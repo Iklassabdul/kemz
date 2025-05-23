@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Claim Your Gift</title>
+  <link rel="stylesheet" href="gift.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Fill in the form to claim your gifts, my love</h1>
+
+    <div class="lottie">
+      <lottie-player src="cake/gift.json" background="transparent" speed="1" loop autoplay></lottie-player>
+    </div>
+
+    <form id="gift-form">
+      <div class="form-group">
+        <label for="address">Your Full Address</label>
+        <textarea id="address" name="address" required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Your Calling Phone Number</label>
+        <input type="tel" id="phone" name="phone" required />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Enter Your Correct Email Address</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+
+      <div class="form-group">
+        <label for="hangout">Do you want us to hangout on your birthday?</label>
+        <select id="hangout" name="hangout" required>
+          <option value="">-- Select --</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+      </div>
+
+      <div class="form-group hidden" id="hangout-options">
+        <label for="hangout-type">Pick a hangout type</label>
+        <select id="hangout-type" name="hangout-type">
+          <option value="">-- Choose --</option>
+          <option value="movie">Movie date with me</option>
+          <option value="dinner">Dinner date</option>
+          <option value="picnic">A picnic with me and Brown</option>
+        </select>
+
+        <label for="hangout-day">When do you prefer?</label>
+        <select id="hangout-day" name="hangout-day">
+          <option value="">-- Choose --</option>
+          <option value="same-day">On your birthday</option>
+          <option value="next-day">The next day</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="voucher">Choose your preferred voucher card, my love</label>
+        <select id="voucher" name="voucher" required>
+          <option value="">-- Select --</option>
+          <option value="shoprite">ShopRite Voucher card</option>
+          <option value="chowdeck">Chowdeck Voucher card</option>
+        </select>
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script src="gift.js"></script>
+</body>
+</html>
