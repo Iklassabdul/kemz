@@ -2,111 +2,70 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Claim Your Gift</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="gift.css" />
 </head>
 <body>
-  <div class="container">
-    <h1 class="gift-heading">Fill in the form to claim your gifts my love.</h1>
+  <div class="gift-container">
+    <h1 class="gift-heading">Fill in the form to claim your gifts, my love.</h1>
 
-    <div class="cake-wrapper">
-      <lottie-player src="cake/gift.json" background="transparent" speed="1" autoplay loop style="width: 180px; height: 180px; margin: auto;"></lottie-player>
+    <div class="lottie-wrapper">
+      <lottie-player src="cake/gift.json" background="transparent" speed="1" loop autoplay></lottie-player>
     </div>
 
-    <form action="https://formspree.io/f/xvgajnwk" method="POST" id="gift-form">
-      <div class="form-group">
-        <label for="fullName">Full Address</label>
-        <input type="text" name="Full Address" id="fullName" required />
-      </div>
+    <form id="gift-form" action="https://formspree.io/f/xvgajnwk" method="POST">
+      <label>Enter your full address</label>
+      <input type="text" name="address" required />
 
-      <div class="form-group">
-        <label for="phone">Phone Number</label>
-        <input type="tel" name="Phone" id="phone" required />
-      </div>
+      <label>Your calling phone number</label>
+      <input type="tel" name="phone" required />
 
-      <div class="form-group">
-        <label for="email">Your Email Address</label>
-        <input type="email" name="Email" id="email" required />
-      </div>
+      <label>Your email address</label>
+      <input type="email" name="email" required />
 
-      <div class="form-group">
-        <label>Would you like to hangout on your birthday?</label>
-        <select name="Hangout Preference" id="hangout-choice" required>
-          <option value="">Select</option>
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
+      <label>Do you want us to hang out on your birthday?</label>
+      <select name="hangout" id="hangout-select" required>
+        <option value="">-- Select an option --</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+
+      <div id="hangout-options" class="hidden">
+        <label>Choose a hangout type</label>
+        <select name="hangout-type">
+          <option value="">-- Choose one --</option>
+          <option value="Movie date with me">Movie date with me</option>
+          <option value="Dinner date">Dinner date</option>
+          <option value="A picnic with me and Brown">A picnic with me and Brown</option>
+        </select>
+
+        <label>When do you want to hang out?</label>
+        <select name="hangout-day">
+          <option value="">-- Choose a day --</option>
+          <option value="Birthday day">On my birthday</option>
+          <option value="Next day">The next day</option>
         </select>
       </div>
 
-      <div class="form-group hidden" id="hangout-options">
-        <label>Pick a hangout type:</label>
-        <select name="Hangout Type">
-          <option value="Movie Date">Movie date with me</option>
-          <option value="Dinner Date">Dinner date</option>
-          <option value="Picnic with Brown">Picnic with me and Brown</option>
-        </select>
-      </div>
+      <label>Choose your preferred voucher card, my love</label>
+      <select name="voucher" required>
+        <option value="">-- Choose one --</option>
+        <option value="ShopRite Voucher card">ShopRite Voucher card</option>
+        <option value="Chowdeck Voucher card">Chowdeck Voucher card</option>
+      </select>
 
-      <div class="form-group hidden" id="hangout-day">
-        <label>When should we hang out?</label>
-        <select name="Hangout Date Preference">
-          <option value="Birthday Day">On my birthday</option>
-          <option value="Next Day">Next day</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label>Choose your preferred voucher card, my love</label>
-        <select name="Voucher Type" required>
-          <option value="ShopRite">ShopRite Voucher</option>
-          <option value="Chowdeck">Chowdeck Voucher</option>
-        </select>
-      </div>
-
-      <button type="submit" class="submit-btn">Submit</button>
+      <button type="submit">Submit</button>
     </form>
 
-    <div id="form-success" class="hidden" style="margin-top: 15px; color: green;">
-      Thank you my love! Your response has been received. 💖
+    <div id="success-message" class="hidden">
+      <lottie-player src="https://lottie.host/48ec307e-bd43-4f5f-9aa2-faa0f2ee134e/8xIfOisEFY.json"
+        background="transparent" speed="1" style="height: 200px" loop autoplay></lottie-player>
+      <h2>Hooray! Your response has been submitted successfully.</h2>
     </div>
   </div>
 
-  <!-- Lottie -->
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-
-  <!-- Submission + Logic -->
-  <script>
-    const hangoutSelect = document.getElementById('hangout-choice');
-    const hangoutOptions = document.getElementById('hangout-options');
-    const hangoutDay = document.getElementById('hangout-day');
-    const form = document.getElementById('gift-form');
-    const successMsg = document.getElementById('form-success');
-
-    hangoutSelect.addEventListener('change', () => {
-      const show = hangoutSelect.value === "Yes";
-      hangoutOptions.classList.toggle('hidden', !show);
-      hangoutDay.classList.toggle('hidden', !show);
-    });
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const formData = new FormData(form);
-      const res = await fetch(form.action, {
-        method: 'POST',
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      });
-
-      if (res.ok) {
-        form.reset();
-        successMsg.classList.remove('hidden');
-        hangoutOptions.classList.add('hidden');
-        hangoutDay.classList.add('hidden');
-      } else {
-        alert("Something went wrong, please try again.");
-      }
-    });
-  </script>
+  <script src="gift.js"></script>
 </body>
 </html>

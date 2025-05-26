@@ -1,20 +1,39 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const hangoutSelect = document.getElementById("hangout");
+  const hangoutSelect = document.getElementById("hangout-select");
   const hangoutOptions = document.getElementById("hangout-options");
+  const form = document.getElementById("gift-form");
+  const success = document.getElementById("success-message");
 
   hangoutSelect.addEventListener("change", function () {
-    if (this.value === "yes") {
+    if (this.value === "Yes") {
       hangoutOptions.classList.remove("hidden");
     } else {
       hangoutOptions.classList.add("hidden");
     }
   });
 
-  document.getElementById("gift-form").addEventListener("submit", function (e) {
+  form.addEventListener("submit", function (e) {
     e.preventDefault();
-    alert("Submitted successfully, my love!");
-    // You can replace the alert with logic to handle the form data
-    this.reset();
-    hangoutOptions.classList.add("hidden");
+    const data = new FormData(form);
+    const action = form.getAttribute("action");
+
+    fetch(action, {
+      method: "POST",
+      body: data,
+      headers: {
+        Accept: "application/json"
+      }
+    })
+    .then(res => {
+      if (res.ok) {
+        form.classList.add("hidden");
+        success.classList.remove("hidden");
+      } else {
+        alert("Something went wrong. Please try again.");
+      }
+    })
+    .catch(() => {
+      alert("There was a network error.");
+    });
   });
 });
