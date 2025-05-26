@@ -41,15 +41,16 @@ body {
 
 .birthday-message {
   font-family: 'Playfair Display', serif;
-  font-size: 1rem;
-  line-height: 1.8;
-  color: #333;
-  background: #fff0f3;
-  padding: 20px;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #444;
+  background: #fff6fa;
+  padding: 20px 25px;
   border-radius: 15px;
   margin-top: 20px;
   white-space: pre-line;
   box-shadow: 0 5px 15px rgba(255, 77, 109, 0.2);
+  text-align: left;
 }
 
 .cake-wrapper {
@@ -190,7 +191,7 @@ body {
   color: #333;
 }
 
-/* Audio Player */
+/* Audio Player - Pink */
 .simple-audio-player {
   background: #ffeaf2;
   border-radius: 20px;
@@ -309,5 +310,10 @@ body {
 
   #countdown small {
     font-size: 0.65rem;
+  }
+
+  .birthday-message {
+    font-size: 0.95rem;
+    padding: 16px;
   }
 }
