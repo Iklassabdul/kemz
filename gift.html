@@ -8,72 +8,62 @@
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 <body>
-  <div class="container">
-    <h1>Fill in the form to claim your gifts, my love.</h1>
+  <div class="container" id="gift-container">
+    <h1 class="form-header">Fill in the form to claim your gifts, my love.</h1>
     
-    <div id="lottie-gift">
-      <lottie-player src="gift.json" background="transparent" speed="1" loop autoplay></lottie-player>
+    <div id="gift-lottie">
+      <lottie-player src="gift.json" background="transparent" speed="1" style="width: 100%; height: 200px;" loop autoplay></lottie-player>
     </div>
 
     <form id="gift-form" action="https://formspree.io/f/xvgajnwk" method="POST">
-      <label>Full Address
-        <input type="text" name="address" required>
-      </label>
+      <label for="address">Enter your full address:</label>
+      <input type="text" id="address" name="address" required />
 
-      <label>Phone Number
-        <input type="tel" name="phone" required>
-      </label>
+      <label for="phone">Your calling phone number:</label>
+      <input type="tel" id="phone" name="phone" required />
 
-      <label>Email Address
-        <input type="email" name="email" required>
-      </label>
+      <label for="email">Enter your correct email address:</label>
+      <input type="email" id="email" name="email" required />
 
-      <label>Do you want us to hangout on your birthday?
-        <select id="hangout-select" name="hangout" required>
-          <option value="">-- Choose --</option>
-          <option value="yes">Yes</option>
-          <option value="no">No</option>
-        </select>
-      </label>
-
-      <div id="hangout-options" class="hidden">
-        <label>Pick one sweet plan:
-          <select name="hangout_type" required>
-            <option value="">-- Choose one --</option>
-            <option value="movie">Movie date with me</option>
-            <option value="dinner">Dinner date</option>
-            <option value="picnic">Picnic with me and Brown</option>
-          </select>
-        </label>
-
-        <label>When do you prefer it?
-          <select name="hangout_day" required>
-            <option value="">-- Choose day --</option>
-            <option value="same-day">On your birthday</option>
-            <option value="next-day">The next day</option>
-          </select>
-        </label>
+      <label>Do you want us to hangout on your birthday?</label>
+      <div class="radio-group">
+        <label><input type="radio" name="hangout" value="yes" required /> Yes</label>
+        <label><input type="radio" name="hangout" value="no" required /> No</label>
       </div>
 
-      <label>Choose your preferred voucher card, my love
-        <select name="voucher" required>
-          <option value="">-- Select --</option>
-          <option value="shoprite">ShopRite Voucher Card</option>
-          <option value="chowdeck">Chowdeck Voucher Card</option>
+      <div id="hangout-options">
+        <label for="hangout-type">Choose your hangout plan:</label>
+        <select id="hangout-type" name="hangoutType" required>
+          <option value="">Select an option</option>
+          <option value="Movie date with me">Movie date with me</option>
+          <option value="Dinner date">Dinner date</option>
+          <option value="Picnic with me and Brown">Picnic with me and Brown</option>
         </select>
-      </label>
+
+        <label for="hangout-day">Do you want to hangout on your birthday or the next day?</label>
+        <select id="hangout-day" name="hangoutDay" required>
+          <option value="">Select day</option>
+          <option value="On my birthday">On my birthday</option>
+          <option value="The next day">The next day</option>
+        </select>
+      </div>
+
+      <label for="voucher">Choose your preferred voucher card, my love:</label>
+      <select id="voucher" name="voucher" required>
+        <option value="">Select Voucher</option>
+        <option value="ShopRite Voucher">ShopRite Voucher card</option>
+        <option value="Chowdeck Voucher">Chowdeck Voucher card</option>
+      </select>
 
       <button type="submit">Submit</button>
     </form>
 
-    <div id="success-message" class="hidden">
-      <lottie-player src="delivery.json" background="transparent" speed="1" loop autoplay></lottie-player>
-      <p class="success-text">
-        Operation spoil my babygirl is now in motion.<br>
-        Hold tight babygirl, delivery in progress.
-      </p>
+    <div id="success-message">
+      <lottie-player src="delivery.json" background="transparent" speed="1" style="width: 220px; height: 220px;" loop autoplay></lottie-player>
+      <h2>Operation spoil my babygirl is now in motion. Hold tight babygirl, delivery in progress.</h2>
     </div>
   </div>
+
   <script src="gift.js"></script>
 </body>
 </html>
