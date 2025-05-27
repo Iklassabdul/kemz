@@ -1,136 +1,120 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@400;600&display=swap');
 
 body {
-  margin: 0;
   font-family: 'Poppins', sans-serif;
-  background: #fff0f3;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 40px 20px;
+  background-color: #fff0f3;
   color: #333;
-}
-
-.container {
-  max-width: 600px;
-  width: 100%;
-  background: #ffffff;
-  padding: 30px 25px;
-  border-radius: 20px;
-  box-shadow: 0 8px 30px rgba(255, 77, 109, 0.2);
+  margin: 0;
+  padding: 0;
   text-align: center;
 }
 
-.container h1 {
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+header {
   font-family: 'Playfair Display', serif;
-  font-size: 1.6rem;
-  color: #c2185b;
+  font-size: 1.8rem;
+  color: #d6336c;
   margin-bottom: 20px;
 }
 
 form {
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  text-align: left;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+input,
+select {
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  width: 100%;
 }
 
 label {
   font-weight: 600;
   margin-bottom: 5px;
-  display: block;
+  text-align: left;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-select,
-textarea {
-  width: 100%;
-  padding: 12px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  background: #fff8fb;
-  font-size: 1rem;
-  transition: border-color 0.3s;
-}
-
-input:focus,
-select:focus,
-textarea:focus {
-  outline: none;
-  border-color: #ff4d6d;
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .radio-group {
   display: flex;
   gap: 10px;
-  align-items: center;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .radio-group label {
-  font-weight: 400;
+  margin-right: 15px;
+  font-weight: normal;
 }
 
-button[type="submit"] {
-  padding: 12px 20px;
-  background: #ff4d6d;
+.hidden {
+  display: none !important;
+}
+
+button {
+  background-color: #d6336c;
   color: white;
   border: none;
+  padding: 12px;
   font-size: 1rem;
-  font-weight: bold;
   border-radius: 25px;
   cursor: pointer;
-  transition: background 0.3s;
+  margin-top: 10px;
+  width: 100%;
+  transition: background 0.3s ease;
 }
 
-button[type="submit"]:hover {
-  background: #e63e5c;
+button:hover {
+  background-color: #b91d56;
 }
 
-/* Conditional section for hangout options */
-#hangout-options {
-  display: none;
-  flex-direction: column;
-  gap: 15px;
-}
-
-/* Success Message Section */
-#success-message {
-  display: none;
+.success-message {
+  display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 30px 20px;
-  text-align: center;
+  margin-top: 40px;
 }
 
-#success-message.show {
-  display: flex;
-}
-
-#success-message h2 {
+.success-message h2 {
   font-family: 'Playfair Display', serif;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   color: #c2185b;
   font-weight: bold;
   margin-top: 20px;
 }
 
-/* Responsive Design */
-@media (max-width: 480px) {
+#gift-animation,
+#hooray-animation {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 600px) {
   .container {
-    padding: 25px 15px;
+    padding: 30px 15px;
   }
 
-  input, select, textarea {
-    font-size: 0.95rem;
-  }
-
-  button[type="submit"] {
-    font-size: 0.95rem;
+  header {
+    font-size: 1.5rem;
   }
 
   .radio-group {
@@ -138,7 +122,7 @@ button[type="submit"]:hover {
     align-items: flex-start;
   }
 
-  #success-message h2 {
-    font-size: 1.2rem;
+  button {
+    font-size: 1rem;
   }
 }

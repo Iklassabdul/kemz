@@ -1,61 +1,41 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
+  const hangoutSelect = document.getElementById("hangout-select");
+  const hangoutOptions = document.getElementById("hangout-options");
   const form = document.getElementById("gift-form");
-  const successDiv = document.getElementById("success");
-  const formContainer = document.querySelector("form");
-  const hangoutSelect = document.getElementById("hangout");
-  const hangoutDetails = document.getElementById("hangout-details");
+  const success = document.getElementById("success");
 
-  // Load Lottie success animation
-  const lottieContainer = document.getElementById("lottie-success");
-  if (lottieContainer) {
-    lottie.loadAnimation({
-      container: lottieContainer,
-      renderer: 'svg',
-      loop: true,
-      autoplay: true,
-      path: 'cake/delivery.json'
-    });
-  }
-
-  // Show/hide conditional hangout questions
-  hangoutSelect.addEventListener("change", function () {
-    if (this.value === "yes") {
-      hangoutDetails.classList.add("show-conditional");
-      Array.from(hangoutDetails.querySelectorAll("select")).forEach(select => {
-        select.setAttribute("required", "required");
-      });
-    } else {
-      hangoutDetails.classList.remove("show-conditional");
-      Array.from(hangoutDetails.querySelectorAll("select")).forEach(select => {
-        select.removeAttribute("required");
-      });
-    }
+  hangoutSelect.addEventListener("change", () => {
+    hangoutOptions.classList.toggle("hidden", hangoutSelect.value !== "yes");
   });
 
-  // Handle form submission
   form.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    const formData = new FormData(form);
-    fetch("https://formspree.io/f/xvgajnwk", {
+    // Basic validation
+    const inputs = form.querySelectorAll("input, select");
+    for (const input of inputs) {
+      if (input.required && !input.value.trim()) {
+        alert("Please fill all required fields.");
+        return;
+      }
+    }
+
+    const data = new FormData(form);
+    fetch(form.action, {
       method: "POST",
+      body: data,
       headers: {
-        'Accept': 'application/json'
-      },
-      body: formData
+        Accept: "application/json"
+      }
     }).then(response => {
       if (response.ok) {
-        form.reset();
-        formContainer.style.display = "none";
-        successDiv.classList.add("show");
-        document.getElementById("success-message").textContent =
-          "Operation spoil my babygirl is now in motion. Hold tight babygirl, delivery in progress.";
+        form.classList.add("hidden");
+        success.classList.remove("hidden");
       } else {
-        alert("Oops! Something went wrong. Please try again.");
+        alert("Something went wrong. Try again.");
       }
-    }).catch(error => {
-      console.error("Form error:", error);
-      alert("There was a network error. Please try again later.");
+    }).catch(() => {
+      alert("Submission failed. Please try again.");
     });
   });
 });
