@@ -7,31 +7,43 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="welcome.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 <body>
+
   <!-- Welcome Screen -->
   <div id="welcome-screen">
     <div class="welcome-message" id="welcome-message"></div>
   </div>
 
   <div class="container">
+    <!-- Rotating Title -->
     <h1 id="rotating-title">Hey love, something special is coming…</h1>
-
-    <!-- Birthday Lottie (Shown at 12AM on May 31) -->
     <div id="moment-animation" class="hidden">
-      <lottie-player
-        src="assets/dd.json"
-        background="transparent"
-        speed="1"
-        style="max-width: 300px; margin: 0 auto;"
-        loop
-        autoplay>
-      </lottie-player>
+  <lottie-player
+    src="assets/dd.json"
+    background="transparent"
+    speed="1"
+    style="max-width: 300px; margin: 0 auto;"
+    loop
+    autoplay>
+  </lottie-player>
+</div>
+
+
+    <!-- Birthday Message -->
+    <div id="birthday-message" class="birthday-message hidden">
+      <p><strong>Happy Birthday, Oluwakemi.</strong></p>
+      <p>From the moment Allah destined our paths to cross, I knew you were special. Today, I raise my hands in du’a that Allah (SWT) showers you with joy, barakah, and endless serenity.</p>
+      <p>You are not just my peace, you are my purpose. I pray you're always surrounded by people who uplift your soul and remind you of your worth.</p>
+      <p>May He ease your worries, fill your heart with sakinah (tranquility), and write beautiful stories for you this new year.</p>
+      <p>I love you more than words can hold. More than code can express. More than promises can declare.</p>
+      <p>With you, I've learned patience, gratitude, and what it truly means to care deeply.</p>
+      <p>Never doubt how much I believe in you. You’re destined for greatness.</p>
+      <p><strong>Barakallahu fii umrik, my love.</strong><br>May this year be your softest, strongest, and most beautiful yet.</p>
     </div>
 
-    <!-- Cake (before 12AM) -->
-    <div class="cake-wrapper" id="cake-wrapper">
+    <!-- Cake Animation -->
+    <div class="cake-wrapper">
       <img src="cake.png" alt="Birthday Cake" class="cake"/>
       <div class="flame"></div>
     </div>
@@ -44,14 +56,11 @@
       <div><span id="seconds">00</span><small>Seconds</small></div>
     </div>
 
-    <!-- Birthday Wishes (12AM May 31) -->
-    <div id="birthday-message" class="birthday-message hidden"></div>
-
-    <!-- Gift Unwrap Heading -->
+    <!-- Gift Claim Heading -->
     <h2 id="gift-heading" class="gift-heading">Click here to unwrap your gift, my love</h2>
 
     <!-- Audio Player -->
-    <div class="simple-audio-player" id="audio-player">
+    <div class="simple-audio-player">
       <button id="play-button" class="play-btn">
         <span id="play-icon">&#9658;</span>
       </button>
@@ -63,19 +72,13 @@
       <audio id="audio" preload="auto" type="audio/mp3"></audio>
     </div>
 
-    <!-- Phrase Reveal -->
+    <!-- Phrase Display -->
     <div id="phrase-display" class="hidden">
       <h3 id="phrase-text">Your phrase will appear here</h3>
     </div>
   </div>
 
-  <!-- Gift Popup -->
-  <div id="gift-popup" class="popup hidden">
-    <span id="close-popup">&times;</span>
-    <p id="popup-text">Surprise message here</p>
-  </div>
-
-  <!-- Password Popup -->
+  <!-- Phrase Password Popup -->
   <div id="password-popup" class="popup hidden">
     <span id="close-password-popup">&times;</span>
     <h3>Enter password to unlock today's phrase</h3>
@@ -84,15 +87,22 @@
     <div id="error-message" class="hidden"></div>
   </div>
 
-  <!-- Unlock Gift Phrase Popup (after 9AM May 31) -->
+  <!-- Gift Locked Popup -->
+  <div id="gift-popup" class="popup hidden">
+    <span id="close-popup">&times;</span>
+    <p id="popup-text">Surprise message here</p>
+  </div>
+
+  <!-- Unlock Gift Phrase Popup -->
   <div id="unlock-popup" class="popup hidden">
     <span id="close-unlock-popup">&times;</span>
-    <h3>Enter the 10-word phrase to unlock your gift</h3>
-    <input type="text" id="unlock-input" placeholder="Type the full 10-word phrase here" />
+    <h3>Enter the 10-word phrase to unwrap your gift</h3>
+    <input type="text" id="unlock-input" placeholder="Type your full phrase here" />
     <button id="submit-unlock">Unlock Gift</button>
     <div id="unlock-error" class="hidden"></div>
   </div>
 
+  <!-- Main Script -->
   <script src="script.js"></script>
 </body>
 </html>
