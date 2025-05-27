@@ -2,73 +2,82 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Claim Your Gift</title>
-  <link rel="stylesheet" href="gift.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 <body>
-  <div class="container">
-    <h1>Fill in the form to claim your gifts, my love.</h1>
-    
-    <div id="lottie-gift">
-      <lottie-player src="gift.json" background="transparent" speed="1" loop autoplay></lottie-player>
+  <div class="container gift-page">
+    <h1 class="gift-header">Fill in the form to claim your gifts, my love</h1>
+
+    <div class="gift-animation">
+      <lottie-player src="cake/gift.json" background="transparent" speed="1" loop autoplay></lottie-player>
     </div>
 
-    <form id="gift-form" action="https://formspree.io/f/xvgajnwk" method="POST">
-      <label>Full Address
-        <input type="text" name="address" required>
-      </label>
+    <form id="gift-form">
+      <div class="form-group">
+        <label for="address">Enter your full address</label>
+        <input type="text" name="address" id="address" required />
+      </div>
 
-      <label>Phone Number
-        <input type="tel" name="phone" required>
-      </label>
+      <div class="form-group">
+        <label for="phone">Your phone number</label>
+        <input type="tel" name="phone" id="phone" required />
+      </div>
 
-      <label>Email Address
-        <input type="email" name="email" required>
-      </label>
+      <div class="form-group">
+        <label for="email">Enter your correct email address</label>
+        <input type="email" name="email" id="email" required />
+      </div>
 
-      <label>Do you want us to hangout on your birthday?
-        <select id="hangout-select" name="hangout" required>
-          <option value="">-- Choose --</option>
+      <div class="form-group">
+        <label for="hangout">Do you want us to hangout on your birthday?</label>
+        <select name="hangout" id="hangout" required>
+          <option value="">Select an option</option>
           <option value="yes">Yes</option>
           <option value="no">No</option>
         </select>
-      </label>
-
-      <div id="hangout-options" class="hidden">
-        <label>Pick one sweet plan:
-          <select name="hangout_type" required>
-            <option value="">-- Choose one --</option>
-            <option value="movie">Movie date with me</option>
-            <option value="dinner">Dinner date</option>
-            <option value="picnic">Picnic with me and Brown</option>
-          </select>
-        </label>
-
-        <label>When do you want to hangout?
-          <select name="hangout_day" required>
-            <option value="">-- Choose --</option>
-            <option value="birthday">On your birthday</option>
-            <option value="next_day">The next day</option>
-          </select>
-        </label>
       </div>
 
-      <label>Choose your preferred voucher card, my love:
-        <select name="voucher" required>
-          <option value="">-- Choose --</option>
-          <option value="shoprite">ShopRite Voucher Card</option>
-          <option value="chowdeck">Chowdeck Voucher Card</option>
-        </select>
-      </label>
+      <div id="hangout-details" class="form-conditional">
+        <div class="form-group">
+          <label for="hangout-type">What kind of hangout?</label>
+          <select name="hangout-type" id="hangout-type">
+            <option value="">Select type</option>
+            <option value="movie">Movie date with me</option>
+            <option value="dinner">Dinner date</option>
+            <option value="picnic">A picnic with me and Brown</option>
+          </select>
+        </div>
 
-      <button type="submit">Submit</button>
+        <div class="form-group">
+          <label for="hangout-day">Choose your hangout day</label>
+          <select name="hangout-day" id="hangout-day">
+            <option value="">Select day</option>
+            <option value="birthday">Birthday Day</option>
+            <option value="next">Next Day</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="voucher">Choose your preferred voucher card, my love</label>
+        <select name="voucher" id="voucher" required>
+          <option value="">Select a voucher</option>
+          <option value="ShopRite">ShopRite Voucher Card</option>
+          <option value="Chowdeck">Chowdeck Voucher Card</option>
+        </select>
+      </div>
+
+      <button type="submit" class="submit-btn">Submit</button>
     </form>
 
-    <div id="success" class="hidden">
-      <lottie-player src="delivery.json" background="transparent" speed="1" autoplay></lottie-player>
-      <p class="success-text">Operation spoil my babygirl is now in motion.<br>Hold tight babygirl, delivery in progress.</p>
+    <!-- Success Display -->
+    <div id="success" class="success hidden">
+      <div id="lottie-success" class="lottie-center"></div>
+      <h2 id="success-message" class="success-text"></h2>
     </div>
   </div>
 

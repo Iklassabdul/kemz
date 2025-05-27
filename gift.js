@@ -1,41 +1,61 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const hangoutSelect = document.getElementById("hangout-select");
-  const hangoutOptions = document.getElementById("hangout-options");
+document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("gift-form");
-  const success = document.getElementById("success");
+  const successDiv = document.getElementById("success");
+  const formContainer = document.querySelector("form");
+  const hangoutSelect = document.getElementById("hangout");
+  const hangoutDetails = document.getElementById("hangout-details");
 
-  hangoutSelect.addEventListener("change", () => {
-    hangoutOptions.classList.toggle("hidden", hangoutSelect.value !== "yes");
+  // Load Lottie success animation
+  const lottieContainer = document.getElementById("lottie-success");
+  if (lottieContainer) {
+    lottie.loadAnimation({
+      container: lottieContainer,
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      path: 'cake/delivery.json'
+    });
+  }
+
+  // Show/hide conditional hangout questions
+  hangoutSelect.addEventListener("change", function () {
+    if (this.value === "yes") {
+      hangoutDetails.classList.add("show-conditional");
+      Array.from(hangoutDetails.querySelectorAll("select")).forEach(select => {
+        select.setAttribute("required", "required");
+      });
+    } else {
+      hangoutDetails.classList.remove("show-conditional");
+      Array.from(hangoutDetails.querySelectorAll("select")).forEach(select => {
+        select.removeAttribute("required");
+      });
+    }
   });
 
+  // Handle form submission
   form.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    // Basic validation
-    const inputs = form.querySelectorAll("input, select");
-    for (const input of inputs) {
-      if (input.required && !input.value.trim()) {
-        alert("Please fill all required fields.");
-        return;
-      }
-    }
-
-    const data = new FormData(form);
-    fetch(form.action, {
+    const formData = new FormData(form);
+    fetch("https://formspree.io/f/xvgajnwk", {
       method: "POST",
-      body: data,
       headers: {
-        Accept: "application/json"
-      }
+        'Accept': 'application/json'
+      },
+      body: formData
     }).then(response => {
       if (response.ok) {
-        form.classList.add("hidden");
-        success.classList.remove("hidden");
+        form.reset();
+        formContainer.style.display = "none";
+        successDiv.classList.add("show");
+        document.getElementById("success-message").textContent =
+          "Operation spoil my babygirl is now in motion. Hold tight babygirl, delivery in progress.";
       } else {
-        alert("Something went wrong. Try again.");
+        alert("Oops! Something went wrong. Please try again.");
       }
-    }).catch(() => {
-      alert("Submission failed. Please try again.");
+    }).catch(error => {
+      console.error("Form error:", error);
+      alert("There was a network error. Please try again later.");
     });
   });
 });
