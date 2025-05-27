@@ -2,70 +2,64 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Claim Your Gift</title>
   <link rel="stylesheet" href="gift.css" />
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 <body>
   <div class="gift-container">
-    <h1 class="gift-heading">Fill in the form to claim your gifts, my love.</h1>
+    <h1 class="form-title">Fill in the form to claim your gifts, my love</h1>
 
-    <div class="lottie-wrapper">
+    <div class="lottie-box">
       <lottie-player src="cake/gift.json" background="transparent" speed="1" loop autoplay></lottie-player>
     </div>
 
     <form id="gift-form" action="https://formspree.io/f/xvgajnwk" method="POST">
-      <label>Enter your full address</label>
-      <input type="text" name="address" required />
+      <input type="text" name="fullAddress" placeholder="Enter your full address" required />
+      <input type="tel" name="phone" placeholder="Your calling phone number" required />
+      <input type="email" name="email" placeholder="Enter your correct email address" required />
 
-      <label>Your calling phone number</label>
-      <input type="tel" name="phone" required />
-
-      <label>Your email address</label>
-      <input type="email" name="email" required />
-
-      <label>Do you want us to hang out on your birthday?</label>
-      <select name="hangout" id="hangout-select" required>
-        <option value="">-- Select an option --</option>
+      <label>Do you want us to hangout on your birthday?</label>
+      <select id="hangout-select" name="hangout">
+        <option value="">Select an option</option>
         <option value="Yes">Yes</option>
         <option value="No">No</option>
       </select>
 
       <div id="hangout-options" class="hidden">
-        <label>Choose a hangout type</label>
-        <select name="hangout-type">
-          <option value="">-- Choose one --</option>
+        <label>Choose your preferred hangout:</label>
+        <select name="hangoutType">
+          <option value="">Choose one</option>
           <option value="Movie date with me">Movie date with me</option>
           <option value="Dinner date">Dinner date</option>
-          <option value="A picnic with me and Brown">A picnic with me and Brown</option>
+          <option value="Picnic with me and Brown">Picnic with me and Brown</option>
         </select>
 
-        <label>When do you want to hang out?</label>
-        <select name="hangout-day">
-          <option value="">-- Choose a day --</option>
-          <option value="Birthday day">On my birthday</option>
-          <option value="Next day">The next day</option>
+        <label>When should the hangout be?</label>
+        <select name="hangoutDay">
+          <option value="">Choose one</option>
+          <option value="On my birthday">On my birthday</option>
+          <option value="The next day">The next day</option>
         </select>
       </div>
 
-      <label>Choose your preferred voucher card, my love</label>
+      <label>Choose your preferred voucher card my love</label>
       <select name="voucher" required>
-        <option value="">-- Choose one --</option>
-        <option value="ShopRite Voucher card">ShopRite Voucher card</option>
-        <option value="Chowdeck Voucher card">Chowdeck Voucher card</option>
+        <option value="">Select one</option>
+        <option value="ShopRite Voucher">ShopRite Voucher card</option>
+        <option value="Chowdeck Voucher">Chowdeck Voucher card</option>
       </select>
 
       <button type="submit">Submit</button>
     </form>
 
-    <div id="success-message" class="hidden">
-      <lottie-player src="https://lottie.host/48ec307e-bd43-4f5f-9aa2-faa0f2ee134e/8xIfOisEFY.json"
-        background="transparent" speed="1" style="height: 200px" loop autoplay></lottie-player>
-      <h2>Hooray! Your response has been submitted successfully.</h2>
+    <div id="success-box" class="hidden">
+      <lottie-player src="cake/delivery.json" background="transparent" speed="1" loop autoplay style="height: 280px;"></lottie-player>
+      <p class="success-message">Operation spoil my babygirl is now in motion. Hold tight babygirl, delivery in progress.</p>
     </div>
   </div>
 
-  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
   <script src="gift.js"></script>
 </body>
 </html>
