@@ -46,18 +46,18 @@
           </select>
         </label>
 
-        <label>When do you want to hangout?
+        <label>When do you prefer it?
           <select name="hangout_day" required>
-            <option value="">-- Choose --</option>
-            <option value="birthday">On your birthday</option>
-            <option value="next_day">The next day</option>
+            <option value="">-- Choose day --</option>
+            <option value="same-day">On your birthday</option>
+            <option value="next-day">The next day</option>
           </select>
         </label>
       </div>
 
-      <label>Choose your preferred voucher card, my love:
+      <label>Choose your preferred voucher card, my love
         <select name="voucher" required>
-          <option value="">-- Choose --</option>
+          <option value="">-- Select --</option>
           <option value="shoprite">ShopRite Voucher Card</option>
           <option value="chowdeck">Chowdeck Voucher Card</option>
         </select>
@@ -66,12 +66,14 @@
       <button type="submit">Submit</button>
     </form>
 
-    <div id="success" class="hidden">
-      <lottie-player src="delivery.json" background="transparent" speed="1" autoplay></lottie-player>
-      <p class="success-text">Operation spoil my babygirl is now in motion.<br>Hold tight babygirl, delivery in progress.</p>
+    <div id="success-message" class="hidden">
+      <lottie-player src="delivery.json" background="transparent" speed="1" loop autoplay></lottie-player>
+      <p class="success-text">
+        Operation spoil my babygirl is now in motion.<br>
+        Hold tight babygirl, delivery in progress.
+      </p>
     </div>
   </div>
-
   <script src="gift.js"></script>
 </body>
 </html>

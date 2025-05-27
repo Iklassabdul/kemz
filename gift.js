@@ -2,40 +2,42 @@ document.addEventListener("DOMContentLoaded", () => {
   const hangoutSelect = document.getElementById("hangout-select");
   const hangoutOptions = document.getElementById("hangout-options");
   const form = document.getElementById("gift-form");
-  const success = document.getElementById("success");
+  const successMessage = document.getElementById("success-message");
 
+  // Show hangout follow-up options only if 'Yes' is selected
   hangoutSelect.addEventListener("change", () => {
-    hangoutOptions.classList.toggle("hidden", hangoutSelect.value !== "yes");
+    if (hangoutSelect.value === "yes") {
+      hangoutOptions.classList.remove("hidden");
+      const selects = hangoutOptions.querySelectorAll("select");
+      selects.forEach(sel => sel.setAttribute("required", true));
+    } else {
+      hangoutOptions.classList.add("hidden");
+      const selects = hangoutOptions.querySelectorAll("select");
+      selects.forEach(sel => sel.removeAttribute("required"));
+    }
   });
 
+  // Formspree AJAX Submission
   form.addEventListener("submit", function (e) {
     e.preventDefault();
+    const formData = new FormData(form);
 
-    // Basic validation
-    const inputs = form.querySelectorAll("input, select");
-    for (const input of inputs) {
-      if (input.required && !input.value.trim()) {
-        alert("Please fill all required fields.");
-        return;
-      }
-    }
-
-    const data = new FormData(form);
     fetch(form.action, {
       method: "POST",
-      body: data,
+      body: formData,
       headers: {
         Accept: "application/json"
       }
     }).then(response => {
       if (response.ok) {
+        form.reset();
         form.classList.add("hidden");
-        success.classList.remove("hidden");
+        successMessage.classList.remove("hidden");
       } else {
-        alert("Something went wrong. Try again.");
+        alert("Oops! Something went wrong. Please try again.");
       }
-    }).catch(() => {
-      alert("Submission failed. Please try again.");
+    }).catch(error => {
+      alert("Oops! Unable to submit the form. Please check your connection.");
     });
   });
 });
