@@ -41,20 +41,16 @@ body {
 
 .birthday-message {
   font-family: 'Playfair Display', serif;
-  font-size: 1rem;
-  line-height: 1.8;
-  color: #333;
-  background: #fff0f3;
-  padding: 20px;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #444;
+  background: #fff6fa;
+  padding: 20px 25px;
   border-radius: 15px;
   margin-top: 20px;
   white-space: pre-line;
   box-shadow: 0 5px 15px rgba(255, 77, 109, 0.2);
-}
-
-#moment-animation {
-  margin: 10px auto 20px;
-  max-width: 300px;
+  text-align: left;
 }
 
 .cake-wrapper {
@@ -131,6 +127,7 @@ body {
   100% { text-shadow: 0 0 5px #f48fb1, 0 0 10px #f06292; }
 }
 
+/* Popups */
 .popup {
   position: fixed;
   top: 50%;
@@ -179,8 +176,7 @@ body {
   display: none !important;
 }
 
-#error-message,
-#unlock-error {
+#error-message, #unlock-error {
   color: red;
   font-size: 0.9rem;
   margin-top: 10px;
@@ -195,7 +191,7 @@ body {
   color: #333;
 }
 
-/* Audio Player */
+/* Audio Player - Pink */
 .simple-audio-player {
   background: #ffeaf2;
   border-radius: 20px;
@@ -247,16 +243,60 @@ body {
   cursor: pointer;
 }
 
-#current-time,
-#duration {
+#current-time, #duration {
   font-size: 14px;
   color: #c2185b;
 }
 
-/* Responsive */
+/* Welcome Screen */
+#welcome-screen {
+  position: fixed;
+  inset: 0;
+  background-color: #000;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  text-align: center;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.welcome-message {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: #fff0f3;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 30px 35px;
+  border-radius: 15px;
+  box-shadow: 0 0 30px rgba(255, 77, 109, 0.3);
+  max-width: 700px;
+  width: 100%;
+  line-height: 1.6;
+  text-align: center;
+  animation: fadeInUp 1s ease both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (max-width: 480px) {
-  .container {
+  .welcome-message {
+    font-size: 1.2rem;
     padding: 20px;
+  }
+
+  #countdown {
+    gap: 6px;
   }
 
   #countdown div {
@@ -274,9 +314,6 @@ body {
 
   .birthday-message {
     font-size: 0.95rem;
-  }
-
-  #moment-animation {
-    max-width: 220px;
+    padding: 16px;
   }
 }
