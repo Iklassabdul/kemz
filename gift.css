@@ -2,132 +2,143 @@
 
 body {
   margin: 0;
-  padding: 0;
   font-family: 'Poppins', sans-serif;
-  background-color: #fff0f5;
+  background: #fff0f3;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   min-height: 100vh;
   padding: 40px 20px;
+  color: #333;
 }
 
 .container {
-  background: #fff;
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  max-width: 700px;
+  max-width: 600px;
   width: 100%;
+  background: #ffffff;
+  padding: 30px 25px;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(255, 77, 109, 0.2);
   text-align: center;
 }
 
-h1 {
+.container h1 {
   font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
   color: #c2185b;
-  font-size: 1.5rem;
   margin-bottom: 20px;
 }
 
 form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 18px;
+  text-align: left;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  display: block;
 }
 
 input[type="text"],
 input[type="email"],
 input[type="tel"],
-select {
+select,
+textarea {
+  width: 100%;
   padding: 12px;
-  border: 1px solid #ccc;
   border-radius: 10px;
+  border: 1px solid #ccc;
+  background: #fff8fb;
   font-size: 1rem;
+  transition: border-color 0.3s;
 }
 
-label {
-  font-weight: 600;
-  text-align: left;
-  color: #555;
-  margin-top: 10px;
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #ff4d6d;
+}
+
+.radio-group {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.radio-group label {
+  font-weight: 400;
 }
 
 button[type="submit"] {
-  margin-top: 20px;
-  padding: 12px;
-  background-color: #ff4d6d;
+  padding: 12px 20px;
+  background: #ff4d6d;
   color: white;
-  font-weight: bold;
-  font-size: 1rem;
   border: none;
+  font-size: 1rem;
+  font-weight: bold;
   border-radius: 25px;
   cursor: pointer;
+  transition: background 0.3s;
 }
 
 button[type="submit"]:hover {
-  background-color: #e5395e;
+  background: #e63e5c;
 }
 
-/* Conditional Hangout Fields */
-.conditional-fields {
+/* Conditional section for hangout options */
+#hangout-options {
   display: none;
   flex-direction: column;
-  gap: 10px;
-  margin-top: 10px;
+  gap: 15px;
 }
 
-/* Show when active */
-.show-conditional {
-  display: flex;
-  flex-direction: column;
-}
-
-/* Success Animation */
-#success {
+/* Success Message Section */
+#success-message {
   display: none;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 30px 20px;
+  text-align: center;
 }
 
-#success.show {
+#success-message.show {
   display: flex;
 }
 
-#success-message {
+#success-message h2 {
   font-family: 'Playfair Display', serif;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   color: #c2185b;
-  text-align: center;
+  font-weight: bold;
   margin-top: 20px;
-  max-width: 500px;
-  font-weight: 600;
 }
 
-/* Lottie container */
-#lottie-success {
-  width: 250px;
-  height: 250px;
-}
-
-/* Responsive tweaks */
+/* Responsive Design */
 @media (max-width: 480px) {
   .container {
-    padding: 20px;
+    padding: 25px 15px;
   }
 
-  input,
-  select,
-  button {
+  input, select, textarea {
     font-size: 0.95rem;
   }
 
-  #success-message {
-    font-size: 1.1rem;
+  button[type="submit"] {
+    font-size: 0.95rem;
   }
 
-  #lottie-success {
-    width: 180px;
-    height: 180px;
+  .radio-group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #success-message h2 {
+    font-size: 1.2rem;
   }
 }
